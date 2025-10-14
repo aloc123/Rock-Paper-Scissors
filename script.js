@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     //math.random generates 0 to 1, if I multiply to 3, I generate 0 to 3, but if i get its floor i get 0 to 2
     let compChoiceInt = Math.floor(Math.random() * 3);
@@ -13,6 +16,7 @@ function getComputerChoice() {
             compChoiceStr = `scissor`;
             break;
     }
+    console.log(`Computer's choice: ${compChoiceStr}`);
     return compChoiceStr;
 }
 
@@ -21,8 +25,6 @@ function getHumanChoice() {
     return prompt("Rock, Paper, or Scissors?");
 }
 
-let humanScore = 0;
-let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
     //convert to lowercase for case insensitivity
@@ -72,11 +74,36 @@ function playRound(humanChoice, computerChoice) {
             }
         }
     }
-    console.log(`Human: ${humanScore}   Computer: ${computerScore}`);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-console.log(`Computer's choice: ${computerSelection}`);
+function playGame(){
+//playRound while number of games < 5,
+//every round generate computer choice and get human choice, and then change the scores appropriately
+//when a score == 3, alert on who wins, then reset the scores to zero!
+    alert(`Let's play Rock-Paper-Scissors!`);
+    let numGames = 0;
 
-playRound(humanSelection, computerSelection);
+    while (numGames < 5){
+        playRound(getHumanChoice(), getComputerChoice());
+        numGames++;
+        console.log(`Human: ${humanScore}   Computer: ${computerScore}`);
+    }
+    if (humanScore>computerScore){
+        alert(`YOU WIN!!!`);
+    }
+    else if (humanScore == computerScore){
+        alert(`ITS A TIE!`)
+
+    }
+    else {
+        alert(`You lost :(`);
+    }
+    humanScore = 0;
+    computerScore = 0;
+}
+
+let playChoice = prompt(`Do you want to play a game? [Y/N]`);
+while (playChoice == `Y`){
+    playGame();
+    playChoice = prompt(`Do you want to play a game? [Y/N]`);
+}

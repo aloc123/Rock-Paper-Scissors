@@ -68,33 +68,14 @@ function playRound(humanChoice, computerChoice) {
             }
         }
     }
+
+    
+    result.textContent = `You: ${humanScore}   vs.   Computer: ${computerScore}`;
+
+    
 }
-/*
-function playGame(){
-//playRound while number of games < 5,
-//every round generate computer choice and get human choice, and then change the scores appropriately
-//when a score == 3, alert on who wins, then reset the scores to zero!
-    alert(`Let's play Rock-Paper-Scissors!`);
-    let numGames = 0;
-
-    while (numGames < 5){
-        playRound(getHumanChoice(), getComputerChoice());
-        numGames++;
-        console.log(`Human: ${humanScore}   Computer: ${computerScore}`);
-    }
-    if (humanScore>computerScore){
-        alert(`YOU WIN!!!`);
-    }
-    else if (humanScore == computerScore){
-        alert(`ITS A TIE!`)
-
-    }
-    else {
-        alert(`You lost :(`);
-    }
-    humanScore = 0;
-    computerScore = 0;
-}*/
+const result = document.querySelector(".result-container");
+let game = 0;
 //clicking a button triggers a round to be played
 //get node list of buttons,  
 const btns = document.querySelectorAll(".game-button");
@@ -102,5 +83,11 @@ const btns = document.querySelectorAll(".game-button");
 btns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
         playRound(event.target.textContent, getComputerChoice());
+        game++;
+        if (game == 5){
+            humanScore > computerScore ? alert("You win!") : alert("Computer wins!");
+            game = 0;
+            result.textContent = ``;
+        }
     });
 });

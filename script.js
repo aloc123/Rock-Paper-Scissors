@@ -61,7 +61,7 @@ function playRound(humanChoice, computerChoice) {
                 alert('You win! Paper beats Rock!');
             }
         }
-        else if (humanChoiceComp == 'scissor'){
+        else if (humanChoiceComp == 'scissor' || humanChoiceComp == 'scissors'){
             if (computerChoiceComp == 'rock'){
                 //human lose :(
                 computerScore++;
@@ -75,7 +75,7 @@ function playRound(humanChoice, computerChoice) {
         }
     }
 }
-
+/*
 function playGame(){
 //playRound while number of games < 5,
 //every round generate computer choice and get human choice, and then change the scores appropriately
@@ -100,10 +100,10 @@ function playGame(){
     }
     humanScore = 0;
     computerScore = 0;
-}
+}*/
 
 let playChoice = prompt(`Do you want to play a game? [Y/N]`);
 while (playChoice == `Y`){
-    playGame();
+    playRound(getHumanChoice(), getComputerChoice());
     playChoice = prompt(`Do you want to play a game? [Y/N]`);
 }

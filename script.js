@@ -20,12 +20,6 @@ function getComputerChoice() {
     return compChoiceStr;
 }
 
-function getHumanChoice() {
-    //get the user input using prompt and return it
-    return prompt("Rock, Paper, or Scissors?");
-}
-
-
 function playRound(humanChoice, computerChoice) {
     //convert to lowercase for case insensitivity
     let humanChoiceComp = humanChoice.toLowerCase();
@@ -101,9 +95,12 @@ function playGame(){
     humanScore = 0;
     computerScore = 0;
 }*/
-
-let playChoice = prompt(`Do you want to play a game? [Y/N]`);
-while (playChoice == `Y`){
-    playRound(getHumanChoice(), getComputerChoice());
-    playChoice = prompt(`Do you want to play a game? [Y/N]`);
-}
+//clicking a button triggers a round to be played
+//get node list of buttons,  
+const btns = document.querySelectorAll(".game-button");
+//add an event listerner to each and display the target's text content when clicked
+btns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+        playRound(event.target.textContent, getComputerChoice());
+    });
+});
